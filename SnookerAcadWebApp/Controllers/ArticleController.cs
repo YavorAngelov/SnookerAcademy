@@ -13,7 +13,7 @@ namespace SnookerAcadWebApp.Controllers
         // GET: Article
         public ActionResult Index()
         {
-            return RedirectToAction("List");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Article/List
