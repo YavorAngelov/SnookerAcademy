@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SnookerAcadWebApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +19,15 @@ namespace SnookerAcadWebApp.Controllers
         // GET: Article/List
         public ActionResult List()
         {
-            return View();
+            using (var database = new BlogDbContext())
+            {
+                // Get articles from database
+                var articles = database.Articles
+                    .Include(a => a.Author)
+                    .ToList();
+                return View(articles);
+            }
+          
         }
     }
 }
