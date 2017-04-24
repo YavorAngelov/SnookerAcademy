@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.bs-component {
+    position: relative;
+}
+
+.author {
+    color: #77b300;
+}
+
+.date {
+    color: #77b300;
+}

@@ -1,0 +1,44 @@
+﻿@model List<SnookerAcadWebApp.Models.Article>
+@using SnookerAcadWebApp.Helpers
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="jumbotron">
+    <img src="~/Content/images/jumbo.png" class="text-center img-responsive" />
+</div>
+<hr />
+
+<div class="container">
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <a class="article" href="@Url.Action("Details", "Article", new { @id = article.Id })">
+                <div class="col-sm-4">
+                    <article>
+                        <header>
+                            <h3 style="color: #77b300">
+                                @article.Title
+                            </h3>
+                        </header>
+                        <p style="word-wrap: break-word; color: azure">
+                            @ShortText.CutText(article.Content)
+                        </p>
+                        <footer class="pull-right">
+                            <small class="author">
+                                @article.Author.FullName
+                            </small>
+                        </footer>
+                        <footer class="pull-left">
+                            <small class="date">
+                                @article.Date.Day/@article.Date.Month/@article.Date.Year
+                            </small>
+                        </footer>
+                    </article>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+
