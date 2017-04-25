@@ -115,5 +115,30 @@ namespace SnookerAcadWebApp.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        // GET: Article/Details
+        public ActionResult Details(int? id)
+        {
+            
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            using (var database = new BlogDbContext())
+            {
+                var article = database.Articles
+                .Where(a => a.Id == id)
+                .Include(a => a.Author)
+                .First();
+
+                // Get the article from database 
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(article);
+            }
+            
+        }
     }
 }
