@@ -126,12 +126,13 @@ namespace SnookerAcadWebApp.Controllers
             }
             using (var database = new BlogDbContext())
             {
+                // Get the article from database 
                 var article = database.Articles
                 .Where(a => a.Id == id)
                 .Include(a => a.Author)
                 .First();
 
-                // Get the article from database 
+                
                 if (article == null)
                 {
                     return HttpNotFound();
@@ -139,6 +140,68 @@ namespace SnookerAcadWebApp.Controllers
                 return View(article);
             }
             
+        }
+        //
+        // GET: Article/edit
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            using (var database = new BlogDbContext())
+            {
+                //Get article from the database 
+                var article = database.Articles
+                    .Where(a => a.Id == id)
+                    .First();
+
+                // Check if article exists
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Creating the view model
+                var model = new ArticleViewModel();
+                model.Id = article.Id;
+                model.Title = article.Title;
+                model.Content = article.Content;
+
+                //Pass the view model to view 
+                return View(model);
+            }
+        }
+
+        //POST: Article/Edit
+        [HttpPost]
+        public ActionResult Edit(ArticleViewModel model)
+        {
+            //Check if model state is valid
+            if (ModelState.IsValid)
+            {
+                using (var database = new BlogDbContext())
+                {
+                    //Get article from database
+                    var article = database.Articles
+                        .FirstOrDefault(a => a.Id == model.Id);
+
+                    //Set article properties
+                    article.Title = model.Title;
+                    article.Content = model.Content;
+
+                    //Save article state in database
+                    database.Entry(article).State = EntityState.Modified;
+                    database.SaveChanges();
+
+                    //Redirect to the index page
+                    return RedirectToAction("Index");
+                }
+                
+            }
+            return View(model);
         }
     }
 }
