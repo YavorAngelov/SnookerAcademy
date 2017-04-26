@@ -18,14 +18,25 @@ namespace SnookerAcadWebApp.Controllers
         }
 
         // GET: Article/List
-        public ActionResult List()
+        public ActionResult List(string user = null)
         {
             using (var database = new BlogDbContext())
             {
-                var articles = database.Articles
-                    .Include(a => a.Author)
+                var articlesQuery = database.Articles.Include(a => a.Author).AsQueryable();
+
+                if (user != null)
+                {
+                    articlesQuery = articlesQuery
+                        .Where(a => a.Author.Email == user);
+
+                    if (articlesQuery.Count() == 0)
+                    {
+                        return RedirectToAction("Create");
+                    }
+                }
+
+                var articles = articlesQuery
                     .OrderByDescending(a => a.Id)
-                    .Take(6)
                     .ToList();
 
                 return View(articles);
