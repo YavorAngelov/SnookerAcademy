@@ -14,7 +14,7 @@ namespace SnookerAcadWebApp.Helpers
                 return text;
             }
 
-            text = text.Substring(0, maxLength) + "...";
+            text = text.Substring(0, maxLength);
             return text;
         }
     }

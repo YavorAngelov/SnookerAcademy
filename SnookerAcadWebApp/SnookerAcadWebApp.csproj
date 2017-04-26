@@ -208,6 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\images\about.jpg" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\jumbo.png" />
+    <Content Include="Content\images\logoLayout.png" />
+    <Content Include="Content\images\user.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

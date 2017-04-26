@@ -10,37 +10,45 @@
 <hr />
 
 <div class="container">
-    <div class="row">
-        @foreach (var article in Model)
-        {
-            <a class="article" href="@Url.Action("Details", "Article", new { @id = article.Id })">
-                <div class="col-md-6">
-                    <article>
-                        <header>
-                            <h3 style="color: #77b300">
-                                @article.Title
-                            </h3>
-                        </header>
-                        <p style="word-wrap: break-word; color: azure">
-                            @ShortText.CutText(article.Content)
-                        </p>
-                        <footer class="pull-right">
-                            <small class="author">
-                                <img src="~/Content/images/user.png" width="15" />
-                                @article.Author.FullName
-                            </small>
-                        </footer>
-                        <footer class="pull-left">
-                            <small class="date">
-                                @article.Date.Day/@article.Date.Month/@article.Date.Year
-                            </small>
-                        </footer>
-                    </article>
-                </div>
-            </a>
-        }
-    </div>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var article = Model[i];
 
+        if (i % 2 == 0)
+        {
+            @:<div class="row">
+        }
+
+        <a class="article col-md-6" href="@Url.Action("Details", "Article", new { @id = article.Id })">
+            <div>
+                <article>
+                    <header>
+                        <h3 style="word-wrap: break-word; color: #77b300">
+                            @article.Title
+                        </h3>
+                    </header>
+                    <p style="word-wrap: break-word; color: azure">
+                        @ShortText.CutText(article.Content) ...
+                    </p>
+                    <footer>
+                        <p class="author pull-right">
+                            <img src="~/Content/images/user.png" width="15" />
+                            @article.Author.FullName
+                        </p>
+                        <p class="date pull-left">
+                            @article.Date.Day/@article.Date.Month/@article.Date.Year
+                        </p>
+                    </footer>
+                </article>
+            </div>
+        </a>
+
+        if (i % 2 != 0)
+        {
+            @:</div>
+        }
+    }
 </div>
+
 
 

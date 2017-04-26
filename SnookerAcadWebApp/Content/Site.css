@@ -34,3 +34,8 @@ textarea {
 .date {
     color: #77b300;
 }
+
+.article:hover {
+    text-decoration: none;
+    border: 1px solid #77b300;
+}

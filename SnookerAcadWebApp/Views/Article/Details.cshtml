@@ -8,21 +8,20 @@
     <article>
         <header>
             <hr />
-            <h2 class="text-center" style="color: #77b300">
+            <h2 class="text-center" style="word-wrap: break-word; color: #77b300">
                 @Model.Title
             </h2>
         </header>
         <p style="word-wrap: break-word; color: azure">
             @Model.Content
         </p>
-        <small class="author">
-            <img src="~/Content/images/user.png" width="15" />
-            @Model.Author.FullName
-        </small>
-        <br/>
         <small class="date">
             @Model.Date.Day/@Model.Date.Month/@Model.Date.Year
         </small>
+        <p class="author">
+            <img src="~/Content/images/user.png" width="15" />
+            @Model.Author.FullName
+        </p>
         <footer class="pull-right">
            @if (User.IsInRole("Admin") || Model.IsAuthor(User.Identity.Name))
            {

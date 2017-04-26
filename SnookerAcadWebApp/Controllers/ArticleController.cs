@@ -217,8 +217,8 @@ namespace SnookerAcadWebApp.Controllers
                     database.Entry(article).State = EntityState.Modified;
                     database.SaveChanges();
 
-                    //Redirect to the index page
-                    return RedirectToAction("Index");
+                    //Redirect to the /Details/Id
+                    return RedirectToAction("Details", new { id = model.Id });
                 }
                 
             }
