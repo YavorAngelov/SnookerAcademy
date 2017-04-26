@@ -17,6 +17,11 @@ namespace SnookerAcadWebApp.Models
         [Key]
         public int Id { get; set; }
 
+        internal bool IsAuthor(object name)
+        {
+            throw new NotImplementedException();
+        }
+
         [Required]
         [StringLength(50)]
         public string Title { get; set; }

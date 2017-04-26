@@ -147,9 +147,8 @@ namespace SnookerAcadWebApp.Controllers
             }
             
         }
-        //
-        // GET: Article/edit
-
+        
+        // GET: Article/Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)

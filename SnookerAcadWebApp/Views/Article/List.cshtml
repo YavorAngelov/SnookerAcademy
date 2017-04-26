@@ -1,7 +1,7 @@
 ﻿@model List<SnookerAcadWebApp.Models.Article>
 @using SnookerAcadWebApp.Helpers
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Home";
 }
 
 <div class="jumbotron">
@@ -14,7 +14,7 @@
         @foreach (var article in Model)
         {
             <a class="article" href="@Url.Action("Details", "Article", new { @id = article.Id })">
-                <div class="col-sm-4">
+                <div class="col-md-6">
                     <article>
                         <header>
                             <h3 style="color: #77b300">
@@ -26,6 +26,7 @@
                         </p>
                         <footer class="pull-right">
                             <small class="author">
+                                <img src="~/Content/images/user.png" width="15" />
                                 @article.Author.FullName
                             </small>
                         </footer>
@@ -39,6 +40,7 @@
             </a>
         }
     </div>
+
 </div>
 
 
