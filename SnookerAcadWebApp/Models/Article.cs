@@ -23,7 +23,7 @@ namespace SnookerAcadWebApp.Models
         }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(255)]
         public string Title { get; set; }
 
         [Required]
