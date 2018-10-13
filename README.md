@@ -1,2 +1,2 @@
-# SnookerAcademyWebApp
+# SnookerAcademy
 ASP.NET MVC
