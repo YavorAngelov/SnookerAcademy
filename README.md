@@ -1,2 +1,2 @@
 # SnookerAcademy
-ASP.NET MVC
+Blog website for snooker training acadamy
